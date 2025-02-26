@@ -14,7 +14,7 @@ MODEL_PATH = "best_model.h5"  # Replace with the actual path to your model
 model = initialize_model(MODEL_PATH)
 
 # Agent initialization
-API_KEY = "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"
+
 # Replace with your actual Hugging Face API key
 agent = initialize_agent(API_KEY)
 
