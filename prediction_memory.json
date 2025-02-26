@@ -480,5 +480,344 @@
         "corrected_prediction": null
       }
     }
+  },
+  {
+    "id": "20250226103517",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "image_feedback": "Final decision processing failed due to server timeout.",
+      "prediction_feedback": "Could not determine the accuracy of the model's prediction.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      }
+    }
+  },
+  {
+    "id": "20250226160048",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality issues may impact the model's accuracy, but the prediction appears to be stable.",
+      "image_feedback": "Adjust the camera's focus, exposure, and contrast settings.",
+      "prediction_feedback": "The prediction is stable but slightly lower than the mean confidence score for true positives.",
+      "user_suggestion": "Adjust the camera settings and consider re-taking the image.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The image's technical quality issues and their potential impact on the model's accuracy are: (1) sharpness is above the training mean and median, which may lead to overfitting; (2) brightness is below the training mean and median, which may cause underexposure; (3) contrast is above the training mean and median, potentially resulting in loss of detail. Recommendations for improvement include adjusting the camera's focus, exposure, and contrast settings.",
+        "content": "no",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226162407",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality issues may impact the model's accuracy, but the prediction appears to be stable.",
+      "image_feedback": "Adjust the camera's focus, exposure, and contrast settings.",
+      "prediction_feedback": "The prediction is stable but slightly lower than the mean confidence score for true positives.",
+      "user_suggestion": "Adjust the camera settings and consider re-taking the image.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The image's technical quality issues and their potential impact on the model's accuracy are: (1) sharpness is above the training mean and median, which may lead to overfitting; (2) brightness is below the training mean and median, which may cause underexposure; (3) contrast is above the training mean and median, potentially resulting in loss of detail. Recommendations for improvement include adjusting the camera's focus, exposure, and contrast settings.",
+        "content": "no",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226162429",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality issues may impact the model's accuracy, but the prediction appears to be stable.",
+      "image_feedback": "Adjust the camera's focus, exposure, and contrast settings.",
+      "prediction_feedback": "The prediction is stable but slightly lower than the mean confidence score for true positives.",
+      "user_suggestion": "Adjust the camera settings and consider re-taking the image.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The image's technical quality issues and their potential impact on the model's accuracy are: (1) sharpness is above the training mean and median, which may lead to overfitting; (2) brightness is below the training mean and median, which may cause underexposure; (3) contrast is above the training mean and median, potentially resulting in loss of detail. Recommendations for improvement include adjusting the camera's focus, exposure, and contrast settings.",
+        "content": "no",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226162835",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality is technically sound but content-wise not typical, and the prediction reliability is stable yet slightly lower than expected.",
+      "image_feedback": "Adjust camera focus, exposure, and contrast for improved image quality.",
+      "prediction_feedback": "Prediction is stable but with slightly lower confidence than average for true positives.",
+      "user_suggestion": "Consider retaking the image following the provided technical recommendations and verify the image content aligns with expected skin lesion patterns.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The image's technical quality issues and their potential impact on the model's accuracy are: (1) sharpness is above the training mean and median, which may lead to overfitting; (2) brightness is below the training mean and median, which may cause underexposure; (3) contrast is above the training mean and median, potentially resulting in loss of detail. Recommendations for improvement include adjusting the camera's focus, exposure, and contrast settings.",
+        "content": "The image does not appear to be a typical skin lesion image. The Fourier descriptors of the image do not match the patterns in the training set, with the highest value at the beginning of the array instead of the end. This suggests that the image may contain different content. However, without more information or context, it is difficult to determine the exact nature of the image.",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226163648",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality is high but may lead to overfitting, and the prediction is stable but slightly less confident than typical true positives.",
+      "image_feedback": "The image has higher sharpness, brightness, and contrast than the training mean and median, which could lead to overfitting.",
+      "prediction_feedback": "The prediction appears stable but with slightly lower confidence than the mean for true positives.",
+      "user_suggestion": "Apply data augmentation, normalization, and regularization to improve model performance.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The current image has sharpness, brightness, and contrast that are higher than the training mean and median. The sharpness is 69.4% higher than the training mean, the brightness is 12.5% higher than the training mean, and the contrast is 60.7% higher than the training mean. This could potentially lead to overfitting and decreased model accuracy. To improve the technical quality, it is recommended to apply techniques such as data augmentation, normalization, and regularization to reduce the impact of these metrics on the model's performance.",
+        "content": "The image does not likely contain proper skin lesion content based on the comparison of Fourier descriptors. The key difference is that in the current image, the highest value (1.0) is at the beginning of the array, while in the training set, it's at the end of the array. This discrepancy suggests that the image may not match the typical patterns of skin lesions in the training data. Furthermore, the frequency profile of this image does not closely match the successful cases in the dataset, as evidenced by the difference in the placement of the highest value in the descriptor array.",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226164146",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image is likely a valid skin lesion image with stable prediction, but further examination is recommended to confirm.",
+      "image_feedback": "The image has high sharpness, brightness, and contrast that may lead to overfitting.",
+      "prediction_feedback": "The prediction is stable but with slightly lower confidence score.",
+      "user_suggestion": "Apply techniques such as data augmentation, normalization, and regularization to improve model performance.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The current image has sharpness, brightness, and contrast that are higher than the training mean and median. The sharpness is 69.4% higher than the training mean, the brightness is 12.5% higher than the training mean, and the contrast is 60.7% higher than the training mean. This could potentially lead to overfitting and decreased model accuracy. To improve the technical quality, it is recommended to apply techniques such as data augmentation, normalization, and regularization to reduce the impact of these metrics on the model's performance.",
+        "content": "After analyzing the Fourier descriptors of the given image and comparing them to the training set descriptor patterns, it appears that the image likely contains proper skin lesion content. The descriptors match patterns typical of skin lesions in the training data, with values falling within the expected ranges for mean, max, and min values. However, a more detailed analysis of each descriptor separately is necessary to confirm this assessment. The image's frequency profile matches successful cases in the dataset, but there is always a possibility that it might be a different type of content. Overall, based on the provided data, it seems that the image is likely a valid skin lesion image, but further examination is recommended to rule out any potential discrepancies.",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
+  },
+  {
+    "id": "20250226165923",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "agent_decision": {
+      "assessment_summary": "The image quality is higher than the training mean and median, but the prediction reliability is stable with a slightly lower confidence score.",
+      "image_feedback": "The image has high sharpness, brightness, and contrast that may lead to overfitting and decreased model accuracy.",
+      "content_assessment": "The image is likely not a skin lesion due to multiple Fourier descriptors being outside the range of the training data.",
+      "prediction_feedback": "The prediction appears to be stable but slightly lower than the mean confidence score for true positives.",
+      "user_suggestion": "Apply techniques such as data augmentation, normalization, and regularization to improve the technical quality and reliability of the prediction.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The current image has sharpness, brightness, and contrast that are higher than the training mean and median. The sharpness is 69.4% higher than the training mean, the brightness is 12.5% higher than the training mean, and the contrast is 60.7% higher than the training mean. This could potentially lead to overfitting and decreased model accuracy. To improve the technical quality, it is recommended to apply techniques such as data augmentation, normalization, and regularization to reduce the impact of these metrics on the model's performance.",
+        "content": "This image likely contains proper skin lesion content. The Fourier descriptors of the current image are within the range of the training data for most descriptors, with some values being closer to the mean and others closer to the min or max values. However, descriptor 2 is 0.1916975887980819 which is lower than the min value of 0.0007987925105026623 and higher than 0.24216624997290237, descriptor 7 is 0.07994955909344777 which is higher than the max value of 0.0759003668059377. Since more than one descriptor is outside of the range, this image is likely not a skin lesion.",
+        "reliability": "Based on the confidence score and robustness status, the prediction appears to be stable but slightly lower than the mean confidence score for true positives. Demographic factors may have some impact but are not conclusive."
+      }
+    }
   }
 ]

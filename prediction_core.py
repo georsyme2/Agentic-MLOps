@@ -14,6 +14,7 @@ MODEL_PATH = "best_model.h5"  # Replace with the actual path to your model
 model = initialize_model(MODEL_PATH)
 
 # Agent initialization
+API_KEY = "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"
 # Replace with your actual Hugging Face API key
 agent = initialize_agent(API_KEY)
 
@@ -99,8 +100,18 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
     # Step 4: Perform robustness check
     robustness_status = "Stable"  # Placeholder for actual robustness check logic
 
-    # Step 5: Analyze prediction with agent
-    agent_decision = analyze_prediction_with_agent(agent, image_metrics, confidence_score, robustness_status)
+
+
+# Step 5: Analyze prediction with agent
+    agent_decision = analyze_prediction_with_agent(
+    agent, 
+    image_metrics, 
+    confidence_score, 
+    robustness_status,
+    sex=sex,
+    age_approx=age_approx,
+    anatom_site=anatom_site
+)
 
     # Step 6: Save results to prediction memory
     prediction_id = generate_prediction_id()

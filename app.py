@@ -54,11 +54,17 @@ def main():
             st.markdown(f"**Confidence Score:** {confidence:.2%}")
             st.markdown(f"**Robustness:** {result['robustness']}")
 
+            
+            # In app.py, update the "AI Agent Feedback" section:
+
             # Agent feedback section
             st.subheader("AI Agent Feedback")
 
             st.markdown("**Image Quality Assessment:**")
             st.info(result['agent_decision']['image_feedback'])
+
+            st.markdown("**Content Assessment:**")
+            st.info(result['agent_decision']['content_assessment'])
 
             st.markdown("**Prediction Assessment:**")
             st.info(result['agent_decision']['prediction_feedback'])
@@ -67,7 +73,19 @@ def main():
             st.info(result['agent_decision']['user_suggestion'])
 
             if result['agent_decision']['override_decision']['override']:
-                st.warning("The AI agent has overridden the initial prediction due to image quality issues.")
+                st.warning("The AI agent has overridden the initial prediction due to quality or reliability issues.")
+
+            # Add detailed analyses in expandable sections
+            if 'detailed_analyses' in result['agent_decision']:
+                with st.expander("View Detailed Analysis"):
+                    st.subheader("Technical Quality Analysis")
+                    st.text(result['agent_decision']['detailed_analyses']['technical_quality'])
+                    
+                    st.subheader("Content Analysis") 
+                    st.text(result['agent_decision']['detailed_analyses']['content'])
+                    
+                    st.subheader("Prediction Reliability Analysis")
+                    st.text(result['agent_decision']['detailed_analyses']['reliability'])
 
             # Display image metrics
             st.subheader("Image Metrics")

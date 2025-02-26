@@ -2,7 +2,7 @@ import json
 import os
 import time
 from smolagents import ToolCallingAgent, HfApiModel, Tool
-from promts import IMAGE_QUALITY_PROMPT, PREDICTION_PROMPT, DECISION_PROMPT
+from promts import DECISION_PROMPT, IMAGE_CONTENT_PROMPT, PREDICTION_ANALYSIS_PROMPT, TECHNICAL_QUALITY_PROMPT
 
 # Tool: Collect Image Metrics
 class ImageQualityAssessmentTool(Tool):
@@ -53,88 +53,152 @@ def load_json_log(file_path):
     return None
 
 
+# agent_utils.py - Update these functions
+
 def run_with_retry(agent, prompt, retries=3, delay=10):
     """
     Attempts to run the agent with retries if Hugging Face API is overloaded.
-    If the API fails multiple times, returns None instead of breaking the pipeline.
+    For text responses, returns the text directly.
+    For JSON responses, attempts to parse them.
     """
     for attempt in range(retries):
         try:
             response = agent.run(prompt)
-            return json.loads(response)  # Ensure valid JSON response
-        except json.JSONDecodeError:
-            print(f"⚠️ JSON parsing error on attempt {attempt + 1}. Retrying in {delay} seconds...")
+            
+            # If we expect JSON (for the final decision), try to parse it
+            if "JSON format" in prompt:
+                try:
+                    # Try to find and extract JSON content if it exists
+                    import re
+                    json_match = re.search(r'(\{.*\})', response, re.DOTALL)
+                    if json_match:
+                        json_str = json_match.group(1)
+                        return json.loads(json_str)
+                    return json.loads(response)
+                except json.JSONDecodeError:
+                    print(f"⚠️ JSON parsing error on attempt {attempt + 1}. Retrying...")
+            else:
+                # For text responses, just return the text
+                return response
+                
         except Exception as e:
             print(f"⚠️ API call failed on attempt {attempt + 1}: {e}. Retrying in {delay} seconds...")
+        
         time.sleep(delay)  # Wait before retrying
 
-    print("❌ All retry attempts failed. Returning None.")
-    return None  # If all retries fail, return None to prevent crashes
-
-def analyze_prediction_with_agent(agent, image_metrics, confidence_score, robustness_status):
-    """
-    Uses the AI agent to analyze the prediction, image quality, and user reliability.
-    Enhances decision-making by comparing with training set statistics.
-    """
-    # Load reference logs (You'll need to provide the actual paths)
-    training_image_metrics = load_json_log("image_metrics_log.json")
-    evaluation_metrics = load_json_log("evaluation_metrics_log.json")
-
-    # Prepare the data for the prompts with json.dumps
-    formatted_image_metrics = json.dumps(image_metrics, indent=2)
-    formatted_training_image_metrics = json.dumps(training_image_metrics, indent=2) if training_image_metrics else "Training data not available."
-    formatted_evaluation_metrics = json.dumps(evaluation_metrics, indent=2) if evaluation_metrics else "Evaluation data not available."
-
-    # Ensure confidence_score is a float
-    confidence_score = float(confidence_score)
-
-    # Step 1: Compare Image Quality Against Training Set
-    image_quality_response = run_with_retry(
-        agent,
-        IMAGE_QUALITY_PROMPT.format(
-            image_metrics=formatted_image_metrics,  # Pass the formatted string
-            training_image_metrics=formatted_training_image_metrics,
-            evaluation_metrics=formatted_evaluation_metrics  # Pass the formatted string
-        )
-    )
-
-    if not image_quality_response:
-        image_quality_response = {
-            "image_feedback": "Could not compare image to training set due to missing data or server timeout.",
-            "issues_detected": [] # Assign an empty list
-        }
-
-    # Step 2: Compare Prediction Confidence Against Evaluation Metrics Log
-    prediction_response = run_with_retry(
-        agent,
-        PREDICTION_PROMPT.format(
-            confidence_score=confidence_score,
-            robustness_status=robustness_status,
-            evaluation_metrics=formatted_evaluation_metrics  # Pass the formatted string
-        )
-    )
-
-    if not prediction_response:
-        prediction_response = {
-            "prediction_feedback": "Could not compare confidence to past evaluations due to missing data.",
-            "trust_level": "Unknown"
-        }
-
-    # Step 3: Make Final Decision Using All Available Information
-    final_decision = run_with_retry(
-        agent,
-        DECISION_PROMPT.format(
-            image_quality_response=json.dumps(image_quality_response, indent=2),  # Convert dict to JSON string
-            prediction_response=json.dumps(prediction_response, indent=2)  # Convert dict to JSON string
-        )
-    )
-
-    if not final_decision:
-        final_decision = {
-            "image_feedback": "Final decision processing failed due to server timeout.",
-            "prediction_feedback": "Could not determine the accuracy of the model's prediction.",
+    print("❌ All retry attempts failed. Returning fallback response.")
+    
+    # Provide fallback responses based on context
+    # In the fallback response from run_with_retry:
+    if "JSON format" in prompt:
+        return {
+            "assessment_summary": "Analysis could not be completed due to API limitations.",
+            "image_feedback": "Image quality analysis unavailable.",
+            "content_assessment": "Content analysis unavailable.",
+            "prediction_feedback": "Prediction reliability assessment unavailable.",
             "user_suggestion": "Consider taking a clearer image under better conditions.",
             "override_decision": {"override": False, "corrected_prediction": None}
         }
+    else:
+        return "Analysis could not be completed due to API limitations."
 
+
+def analyze_prediction_with_agent(agent, image_metrics, confidence_score, robustness_status, sex=None, age_approx=None, anatom_site=None):
+    """
+    Uses a modular approach to analyze predictions with separate analyses for:
+    1. Technical image quality
+    2. Image content assessment
+    3. Prediction reliability
+    4. Final decision synthesis
+    """
+    # Load reference logs
+    training_image_metrics = load_json_log("image_metrics_log.json")
+    evaluation_metrics = load_json_log("evaluation_metrics_log.json")
+
+    if not training_image_metrics:
+        training_image_metrics = {
+            "sharpness": {"mean": 600, "median": 500},
+            "brightness": {"mean": 120, "median": 120},
+            "contrast": {"mean": 60, "median": 65},
+            "fourier_descriptors": {"mean": [1.0, 0.25, 0.15, 0.06, 0.03, 0.04, 0.03, 0.02, 0.01, 0.01]}
+        }
+    
+    if not evaluation_metrics:
+        evaluation_metrics = {
+            "categories": {
+                "TP": {"confidence_scores": {"mean": 0.65}},
+                "FP": {"confidence_scores": {"mean": 0.55}},
+                "TN": {"confidence_scores": {"mean": 0.30}},
+                "FN": {"confidence_scores": {"mean": 0.35}}
+            }
+        }
+
+    # Step 1: Analyze technical image quality
+    technical_quality_analysis = run_with_retry(
+        agent,
+        TECHNICAL_QUALITY_PROMPT.format(
+            sharpness=image_metrics["sharpness"],
+            brightness=image_metrics["brightness"],
+            contrast=image_metrics["contrast"],
+            training_sharpness_mean=training_image_metrics["sharpness"]["mean"],
+            training_sharpness_median=training_image_metrics["sharpness"]["median"],
+            training_brightness_mean=training_image_metrics["brightness"]["mean"],
+            training_brightness_median=training_image_metrics["brightness"]["median"],
+            training_contrast_mean=training_image_metrics["contrast"]["mean"],
+            training_contrast_median=training_image_metrics["contrast"]["median"]
+        )
+    )
+    
+    # Step 2: Analyze image content
+    content_analysis = run_with_retry(
+        agent,
+        IMAGE_CONTENT_PROMPT.format(
+            fourier_descriptors=str(image_metrics["fourier_descriptors"]),  # Convert to string
+            training_fourier_descriptors=str(training_image_metrics["fourier_descriptors"])  # Convert to string
+        )
+    )
+    
+    # Step 3: Analyze prediction reliability
+    prediction_analysis = run_with_retry(
+        agent,
+        PREDICTION_ANALYSIS_PROMPT.format(
+            confidence_score=confidence_score,
+            robustness_status=robustness_status,
+            anatom_site=anatom_site if anatom_site else "unknown",
+            age_approx=age_approx if age_approx else "unknown",
+            sex=sex if sex else "unknown",
+            tp_confidence_mean=evaluation_metrics["categories"]["TP"]["confidence_scores"]["mean"],
+            fp_confidence_mean=evaluation_metrics["categories"]["FP"]["confidence_scores"]["mean"],
+            tn_confidence_mean=evaluation_metrics["categories"]["TN"]["confidence_scores"]["mean"],
+            fn_confidence_mean=evaluation_metrics["categories"]["FN"]["confidence_scores"]["mean"]
+        )
+    )
+    
+    # Step 4: Make final decision
+    final_decision = run_with_retry(
+        agent,
+        DECISION_PROMPT.format(
+            technical_quality_analysis=technical_quality_analysis,
+            content_analysis=content_analysis,
+            prediction_analysis=prediction_analysis
+        )
+    )
+    
+    # If final_decision is a string instead of a dict (JSON parsing failed), create a simple dict
+    if isinstance(final_decision, str):
+        final_decision = {
+            "assessment_summary": "Analysis completed with formatting issues.",
+            "image_feedback": "Image quality analysis completed but results could not be properly formatted.",
+            "prediction_feedback": "Prediction reliability assessment completed but results could not be properly formatted.",
+            "user_suggestion": "Consider retrying with a clearer image.",
+            "override_decision": {"override": False, "corrected_prediction": None}
+        }
+    
+    # Store all analyses for possible display in the UI
+    final_decision["detailed_analyses"] = {
+        "technical_quality": technical_quality_analysis,
+        "content": content_analysis,
+        "reliability": prediction_analysis
+    }
+    
     return final_decision
