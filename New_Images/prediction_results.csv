@@ -1,0 +1,8 @@
+image_name,sex,age,anatomical_site,prediction,confidence,robustness,trust_level,override,final_prediction,timestamp
+tmp1idztevb_20250225161848.jpg,male,45,back,1,0.6377015113830566,Stable,High,False,1,2025-02-25 16:18:48
+tmp229_52sm_20250225162621.jpg,male,45,back,1,0.5813137292861938,Stable,unknown,False,1,2025-02-25 16:26:21
+tmpsnc8ce4a_20250225163121.jpg,male,45,back,1,0.5450113415718079,Stable,Medium,False,1,2025-02-25 16:31:21
+tmp5xy9o3vh_20250225163611.jpg,male,45,back,1,0.5660194754600525,Stable,unknown,False,1,2025-02-25 16:36:11
+tmp7aqk93zi_20250225164456.jpg,male,45,back,1,0.5660194754600525,Stable,unknown,False,1,2025-02-25 16:44:56
+tmpjxv60yxu_20250225165154.jpg,male,45,back,1,0.6377015113830566,Stable,unknown,False,1,2025-02-25 16:51:54
+tmptwacz5bv_20250225170127.jpg,male,45,back,1,0.530476987361908,Stable,unknown,False,1,2025-02-25 17:01:27
