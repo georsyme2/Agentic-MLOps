@@ -16,7 +16,7 @@ def initialize_agent(api_key="your_api_key"):  # Replace with your actual API ke
     """
     llm_model = HfApiModel(model_id="meta-llama/Llama-3.3-70B-Instruct", token=api_key, timeout=300)
     agent = ToolCallingAgent(
-        tools=[ImageQualityAssessmentTool(), PredictionEvaluationTool()],
+        tools=[],
         model=llm_model
     )
     return agent

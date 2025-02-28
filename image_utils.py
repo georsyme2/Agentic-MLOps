@@ -70,6 +70,10 @@ def compute_image_metrics(img):
 
 def add_noise(image, noise_factor=0.02):
     """Add random Gaussian noise to the image."""
+    # Ensure the image doesn't have batch dimension
+    if len(image.shape) == 4:  # If shape is (batch, height, width, channels)
+        image = np.squeeze(image, axis=0)
+        
     noise = np.random.normal(0, noise_factor, image.shape)
     noisy_image = np.clip(image + noise, 0, 1)  # Keep values in range
     return noisy_image
@@ -77,18 +81,29 @@ def add_noise(image, noise_factor=0.02):
 
 def apply_blur(image, kernel_size=3):
     """Apply slight Gaussian blur to the image."""
-    return cv2.GaussianBlur(image, (kernel_size, kernel_size), 0)
-
-
-# def apply_rotation(image, angle_range=(-10, 10)):
-#     """Rotate image by a small random angle."""
-#     angle = np.random.uniform(angle_range, angle_range)
-#     return rotate(image, angle, reshape=False, mode='nearest')
+    # Ensure the image doesn't have batch dimension
+    if len(image.shape) == 4:  # If shape is (batch, height, width, channels)
+        image = np.squeeze(image, axis=0)
+    
+    # Convert from float [0-1] to uint8 [0-255] for OpenCV
+    image_uint8 = (image * 255).astype(np.uint8)
+    
+    # Apply blur
+    blurred = cv2.GaussianBlur(image_uint8, (kernel_size, kernel_size), 0)
+    
+    # Convert back to float [0-1]
+    return blurred.astype(np.float32) / 255.0
 
 
 def augment_image(image):
-    """Apply all augmentations: rotation, noise, and blur."""
-    # img = apply_rotation(image)
+    """Apply all augmentations: noise and blur."""
+    # Ensure the image doesn't have batch dimension
+    if len(image.shape) == 4:  # If shape is (batch, height, width, channels)
+        image = np.squeeze(image, axis=0)
+        
     img = add_noise(image)
     img = apply_blur(img)
+    
+    # Add batch dimension back for prediction
+    img = np.expand_dims(img, axis=0)
     return img

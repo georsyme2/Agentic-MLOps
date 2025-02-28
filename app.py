@@ -52,7 +52,43 @@ def main():
                 st.markdown(f"### Prediction: <span style='color:green'>{prediction}</span>", unsafe_allow_html=True)
 
             st.markdown(f"**Confidence Score:** {confidence:.2%}")
-            st.markdown(f"**Robustness:** {result['robustness']}")
+
+            # Enhanced robustness display
+            if 'robustness_details' in result:
+                robustness = result['robustness']
+                robustness_details = result['robustness_details']
+                
+                # Display basic robustness status with appropriate color
+                if robustness == "Stable":
+                    st.markdown(f"**Robustness:** <span style='color:green'>{robustness}</span>", unsafe_allow_html=True)
+                else:
+                    st.markdown(f"**Robustness:** <span style='color:red'>{robustness}</span>", unsafe_allow_html=True)
+                
+                # Display detailed robustness metrics
+                with st.expander("View Robustness Details"):
+                    st.markdown(f"**Stability Score:** {robustness_details['stability_score']:.2%} of augmented images received the same prediction")
+                    st.markdown(f"**Augmentations Tested:** {robustness_details['augmentations_tested']}")
+                    
+                    # Create a bar chart of prediction counts
+                    pred_counts = robustness_details['prediction_counts']
+                    st.subheader("Prediction Distribution Across Augmentations")
+                    
+                    # Convert prediction counts to a format suitable for plotting
+                    pred_df = pd.DataFrame({
+                        'Prediction': [("Melanoma" if int(k) == 1 else "Benign") for k in pred_counts.keys()],
+                        'Count': list(pred_counts.values())
+                    })
+                    
+                    # Plot bar chart
+                    fig, ax = plt.subplots(figsize=(8, 4))
+                    colors = ['red' if pred == 'Melanoma' else 'green' for pred in pred_df['Prediction']]
+                    pred_df.plot.bar(x='Prediction', y='Count', ax=ax, color=colors)
+                    ax.set_title('Prediction Distribution Across Augmented Images')
+                    ax.set_ylabel('Number of Images')
+                    st.pyplot(fig)
+            else:
+                # Fallback for old format without details
+                st.markdown(f"**Robustness:** {result['robustness']}")
 
             
             # In app.py, update the "AI Agent Feedback" section:

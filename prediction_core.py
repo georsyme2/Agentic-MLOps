@@ -6,7 +6,8 @@ from agent_utils import analyze_prediction_with_agent
 import os
 import json
 import numpy as np
-
+from calculate_robustness import calculate_robustness
+from save_quality_images import save_quality_images
 # ====================== CONFIGURATION ======================
 
 # Model initialization
@@ -32,6 +33,8 @@ def generate_prediction_id():
 
 # ====================== PREDICTION PIPELINE ======================
 
+# Update this part in prediction_core.py
+
 def prediction_pipeline(image_path, sex, age_approx, anatom_site):
     """
     Full pipeline for predicting a single image, computing image metrics,
@@ -48,12 +51,6 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
 
     # Step 3: Get the model's prediction
     predicted_label, confidence_scores = get_predictions(model, img)
-
-    # Add debug print statements to understand the structure
-    print("DEBUG - predicted_label type:", type(predicted_label))
-    print("DEBUG - predicted_label value:", predicted_label)
-    print("DEBUG - confidence_scores type:", type(confidence_scores))
-    print("DEBUG - confidence_scores value:", confidence_scores)
 
     # Convert NumPy values to Python native types
     if isinstance(predicted_label, np.ndarray):
@@ -74,7 +71,6 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
             else:
                 # If we can't match the index, take the highest value
                 confidence_score = max(confidence_scores[0])
-                print("DEBUG - Using max confidence:", confidence_score)
         else:
             # Multiple classes, take the one corresponding to predicted_label
             if isinstance(predicted_label, int) and predicted_label < len(confidence_scores):
@@ -82,12 +78,9 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
             else:
                 # Fallback to max value
                 confidence_score = max(confidence_scores)
-                print("DEBUG - Using max confidence (fallback):", confidence_score)
     else:
         # If it's already a single value, use it directly
         confidence_score = confidence_scores
-
-    print("DEBUG - Final confidence_score:", confidence_score)
 
     # Ensure confidence_score is a number, not a list or array
     if isinstance(confidence_score, list) or isinstance(confidence_score, np.ndarray):
@@ -97,22 +90,39 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
     if isinstance(confidence_score, np.number):
         confidence_score = confidence_score.item()
 
-    # Step 4: Perform robustness check
-    robustness_status = "Stable"  # Placeholder for actual robustness check logic
 
+    
+    # Define the number of augmentations to use for robustness testing
+    NUM_AUGMENTATIONS = 5
+    
+    # Calculate robustness using our new function
+    robustness_status, stability_score, prediction_counts = calculate_robustness(
+        model, 
+        img, 
+        predicted_label, 
+        num_augmentations=NUM_AUGMENTATIONS
+    )
+    
+    # Add robustness details to the metrics
+    robustness_details = {
+        "status": robustness_status,
+        "stability_score": stability_score,
+        "prediction_counts": prediction_counts,
+        "augmentations_tested": NUM_AUGMENTATIONS
+    }
 
-
-# Step 5: Analyze prediction with agent
+    # Step 5: Analyze prediction with agent
     agent_decision = analyze_prediction_with_agent(
-    agent, 
-    image_metrics, 
-    confidence_score, 
-    robustness_status,
-    sex=sex,
-    age_approx=age_approx,
-    anatom_site=anatom_site
-)
+        agent, 
+        image_metrics, 
+        confidence_score, 
+        robustness_status,  # Pass just the status string for backward compatibility
+        sex=sex,
+        age_approx=age_approx,
+        anatom_site=anatom_site
+    )
 
+    # Step 6: Save results to prediction memory
     # Step 6: Save results to prediction memory
     prediction_id = generate_prediction_id()
     result = {
@@ -126,9 +136,11 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
         "prediction": predicted_label,
         "confidence_score": confidence_score,
         "robustness": robustness_status,
+        "robustness_details": robustness_details,
         "agent_decision": agent_decision
     }
 
+    # Save to prediction memory
     try:
         # Try to load existing prediction memory
         with open(PREDICTION_MEMORY_FILE, "r") as f:
@@ -145,6 +157,19 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
 
     with open(PREDICTION_MEMORY_FILE, "w") as f:
         json.dump(prediction_memory, f, indent=2)
+
+    # NEW CODE: Save good quality skin lesion images and metadata
+    metadata = {
+        "sex": sex,
+        "age_approx": age_approx,
+        "anatom_site": anatom_site
+    }
+    
+    # Save image if it meets quality criteria and track whether it was saved
+    was_saved = save_quality_images(image_path, metadata, result)
+    
+    # Add save status to the result
+    result['was_saved'] = was_saved
 
     return result
 
