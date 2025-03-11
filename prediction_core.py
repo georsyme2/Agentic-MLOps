@@ -89,8 +89,6 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
     if isinstance(confidence_score, np.number):
         confidence_score = confidence_score.item()
 
-
-    
     # Define the number of augmentations to use for robustness testing
     NUM_AUGMENTATIONS = 5
     
@@ -110,18 +108,18 @@ def prediction_pipeline(image_path, sex, age_approx, anatom_site):
         "augmentations_tested": NUM_AUGMENTATIONS
     }
 
-    # Step 5: Analyze prediction with agent
+    # Step 5: Analyze prediction with agent using the updated unified approach
     agent_decision = analyze_prediction_with_agent(
         agent, 
         image_metrics, 
         confidence_score, 
-        robustness_status,  # Pass just the status string for backward compatibility
+        robustness_status,
+        stability_score=stability_score,  # Pass stability score to the agent
         sex=sex,
         age_approx=age_approx,
         anatom_site=anatom_site
     )
 
-    # Step 6: Save results to prediction memory
     # Step 6: Save results to prediction memory
     prediction_id = generate_prediction_id()
     result = {

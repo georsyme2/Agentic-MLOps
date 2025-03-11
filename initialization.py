@@ -1,7 +1,7 @@
+# initialization.py
 from tensorflow.keras.models import load_model
-from smolagents import ToolCallingAgent, HfApiModel, TransformersModel
-
-from agent_utils import ImageQualityAssessmentTool, PredictionEvaluationTool
+from smolagents import ToolCallingAgent, TransformersModel
+from agent_tools import AnalysisResponseTool
 
 def initialize_model(model_path="best_model.h5"):
     """
@@ -10,14 +10,16 @@ def initialize_model(model_path="best_model.h5"):
     model = load_model(model_path)
     return model
 
-def initialize_agent():  # Replace with your actual API key
+def initialize_agent():
     """
-    Initializes and returns the AI agent.
+    Initializes and returns the AI agent with analysis tools.
     """
-    # llm_model = HfApiModel(model_id="meta-llama/Llama-3.3-70B-Instruct", token=api_key, timeout=300)
-    llm_model = TransformersModel(model_id="Qwen/Qwen2.5-7B-Instruct",device_map="cuda")
+    # Use TransformersModel for local inference
+    llm_model = TransformersModel(model_id="Qwen/Qwen2.5-7B-Instruct", device_map="cuda")
+    
+    # Create the agent with the analysis tool
     agent = ToolCallingAgent(
-        tools=[],
+        tools=[AnalysisResponseTool()],
         model=llm_model
     )
     return agent
