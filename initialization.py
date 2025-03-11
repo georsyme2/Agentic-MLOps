@@ -10,7 +10,7 @@ def initialize_model(model_path="best_model.h5"):
     model = load_model(model_path)
     return model
 
-def initialize_agent(api_key="your_api_key"):  # Replace with your actual API key
+def initialize_agent():  # Replace with your actual API key
     """
     Initializes and returns the AI agent.
     """

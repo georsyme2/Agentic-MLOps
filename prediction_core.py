@@ -14,10 +14,9 @@ from save_quality_images import save_quality_images
 MODEL_PATH = "best_model.h5"  # Replace with the actual path to your model
 model = initialize_model(MODEL_PATH)
 
-# Agent initialization
 
 # Replace with your actual Hugging Face API key
-agent = initialize_agent(API_KEY)
+agent = initialize_agent()
 
 # Paths to log files
 PREDICTION_MEMORY_FILE = "prediction_memory.json"

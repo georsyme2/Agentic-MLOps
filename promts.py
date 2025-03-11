@@ -67,7 +67,7 @@ CONTENT ANALYSIS:
 PREDICTION RELIABILITY ANALYSIS:
 {prediction_analysis}
 
-Synthesize a final decision using ONLY the following JSON format and nothing else:
+Synthesize a final decision using ONLY the following JSON format and nothing else. Do not include any control characters, newlines, or other formatting within JSON values:
 {{
     "assessment_summary": "One sentence conclusion about image quality and prediction reliability",
     "image_feedback": "Brief feedback about image quality issues",
@@ -80,5 +80,5 @@ Synthesize a final decision using ONLY the following JSON format and nothing els
     }}
 }}
 
-IMPORTANT: Response must be VALID JSON only. No additional text, explanations, or non-JSON content.
+IMPORTANT: Response must be VALID JSON only. No additional text, explanations, or non-JSON content. Avoid newlines or special characters inside JSON values.
 """
