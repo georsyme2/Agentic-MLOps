@@ -1531,5 +1531,369 @@
         "reliability": "Reliability analysis unavailable."
       }
     }
+  },
+  {
+    "id": "20250311152124",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250311160435",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250312140320",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250312152949",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250312154338",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250312155631",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "Analysis could not be completed due to API limitations.",
+      "image_feedback": "Image quality analysis unavailable.",
+      "content_assessment": "Content analysis unavailable.",
+      "prediction_feedback": "Prediction reliability assessment unavailable.",
+      "user_suggestion": "Consider taking a clearer image under better conditions.",
+      "override_decision": {
+        "override": false,
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "Technical quality analysis unavailable.",
+        "content": "Content analysis unavailable.",
+        "reliability": "Reliability analysis unavailable."
+      }
+    }
+  },
+  {
+    "id": "20250312170014",
+    "image_metrics": {
+      "sharpness": 955.6319761439096,
+      "brightness": 136.48871970663265,
+      "contrast": 100.31979533672774,
+      "fourier_descriptors": [
+        1.0,
+        0.1916975887980819,
+        0.3285811822698053,
+        0.1320363133568694,
+        0.017450240435147864,
+        0.07387785945872558,
+        0.07994955909344777,
+        0.05627665842141635,
+        0.0027228772646108253,
+        0.04200733663619913
+      ]
+    },
+    "metadata": {
+      "sex": "male",
+      "age_approx": 45,
+      "anatom_site": "back"
+    },
+    "prediction": 1,
+    "confidence_score": 0.6377015113830566,
+    "robustness": "Stable",
+    "robustness_details": {
+      "status": "Stable",
+      "stability_score": 1.0,
+      "prediction_counts": {
+        "1": 5
+      },
+      "augmentations_tested": 5
+    },
+    "agent_decision": {
+      "assessment_summary": "The image has good technical quality and the prediction appears reliable, but the Fourier descriptors suggest potential skin lesion content.",
+      "image_feedback": "The current image sharpness and brightness are above the training mean, indicating good quality. Contrast is slightly higher than average, which is acceptable.",
+      "content_assessment": "Fourier descriptors show some variations from the training set, suggesting possible skin lesion content. However, the variations are not extreme.",
+      "prediction_feedback": "The confidence score is moderate and the robustness status is stable, indicating the prediction is reasonably reliable.",
+      "user_suggestion": "Consider reviewing the image and the prediction for accuracy, especially focusing on the Fourier descriptors.",
+      "override_decision": {
+        "override": "false",
+        "corrected_prediction": null
+      },
+      "detailed_analyses": {
+        "technical_quality": "The image sharpness, brightness, and contrast are all above the training mean, indicating high-quality imaging. Slight variations in Fourier descriptors could indicate skin lesions, but further review is needed.",
+        "content": "Fourier descriptors show some variation compared to the training set, particularly in the min, max, and mean values, which could suggest skin lesion content. Further analysis is recommended.",
+        "reliability": "The confidence score and robustness status are within acceptable ranges, indicating the prediction is reliable."
+      }
+    }
   }
 ]

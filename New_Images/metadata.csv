@@ -1,0 +1,2 @@
+image_name,sex,age,anatomical_site,prediction,confidence,robustness
+image_20250312170014.jpg,male,45,back,1,0.6377015113830566,Stable

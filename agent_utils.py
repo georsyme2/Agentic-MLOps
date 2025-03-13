@@ -44,8 +44,7 @@ def analyze_prediction_with_agent(agent, image_metrics, confidence_score, robust
     training_image_metrics = load_json_log("image_metrics_log.json")
     evaluation_metrics = load_json_log("evaluation_metrics_log.json")
 
-    global latest_analysis_response
-    latest_analysis_response = None
+
     # Fallback values if log files aren't found
     if not training_image_metrics:
         training_image_metrics = {
@@ -101,29 +100,50 @@ def analyze_prediction_with_agent(agent, image_metrics, confidence_score, robust
         tn_confidence_mean=evaluation_metrics["categories"]["TN"]["confidence_scores"]["mean"],
         fn_confidence_mean=evaluation_metrics["categories"]["FN"]["confidence_scores"]["mean"]
     )
-    
+    global latest_analysis_response
+    latest_analysis_response = None
     try:
         # Run the agent with the formatted prompt
         response = agent.run(formatted_prompt)
         
-        # Check the response structure
-        print(f"Response type: {type(response)}")
+        # If using the enhanced agent, get results directly
+        if hasattr(agent, 'get_tool_result'):
+            analysis_result = agent.get_tool_result(tool_name="analysis_response")
+            if analysis_result is not None:
+                return analysis_result
+                
+        # Best effort to extract the result from the observations
+        if hasattr(agent, 'memory') and agent.memory.steps:
+            latest_step = agent.memory.steps[-1]
+            if hasattr(latest_step, 'observations'):
+                # If observations is a string, try to extract and parse
+                observations = latest_step.observations
+                if observations and isinstance(observations, str):
+                    import json
+                    # Try using regex to find a JSON object
+                    import re
+                    match = re.search(r'Observations:\s*({.*})', observations, re.DOTALL)
+                    if match:
+                        try:
+                            return json.loads(match.group(1))
+                        except:
+                            pass
+                    
+                    # Try plain eval as fallback
+                    try:
+                        import ast
+                        return ast.literal_eval(observations)
+                    except:
+                        pass
+                
+                # If we got here, we either couldn't parse observations as a dict
+                # or observations wasn't a string
+                print(f"Could not parse observations as dict: {observations}")
         
-        if latest_analysis_response is not None:
-            print("Found analysis response in global variable")
-            return latest_analysis_response
-        # Debug output to understand the response structure
-        print("⚠️ Unexpected response structure. Response:", response)
-        
-        # Fallback to looking for any familiar parts of the expected structure
-        if isinstance(response, dict):
-            for key, value in response.items():
-                if isinstance(value, dict) and "assessment_summary" in value:
-                    return value
-        
-        # Final fallback
-        print("⚠️ Could not extract valid analysis from response")
+        # Fallback
         return create_fallback_response()
     except Exception as e:
         print(f"❌ Error during agent analysis: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return create_fallback_response()

@@ -50,8 +50,7 @@ class AnalysisResponseTool(Tool):
             }
         }
 
-        # Store the result in the global variable
-        latest_analysis_response = result
+
 
 
         return result

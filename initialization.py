@@ -2,6 +2,7 @@
 from tensorflow.keras.models import load_model
 from smolagents import ToolCallingAgent, TransformersModel
 from agent_tools import AnalysisResponseTool
+from custom_agent import EnhancedToolCallingAgent
 
 def initialize_model(model_path="best_model.h5"):
     """
@@ -18,7 +19,7 @@ def initialize_agent():
     llm_model = TransformersModel(model_id="Qwen/Qwen2.5-7B-Instruct", device_map="cuda")
     
     # Create the agent with the analysis tool
-    agent = ToolCallingAgent(
+    agent = EnhancedToolCallingAgent(
         tools=[AnalysisResponseTool()],
         model=llm_model
     )
